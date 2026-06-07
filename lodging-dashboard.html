@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 2 — Lodging · Stewart · Hicks · Williams 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0D1F38; --navy-2:#142C50; --navy-3:#1E3D6E;
+  --blue:    #1260C8; --blue-2:#1E7AE8; --blue-3:#5AABFF;
+  --blue-pale:#E4F0FF; --blue-rim:#B0CFF8;
+  --green:   #097B4C; --green-2:#10A864; --green-3:#3DD68C;
+  --green-pale:#E3F9EE; --green-rim:#96E8C0;
+  --amber:   #C27A0A; --amber-pale:#FFF8E1; --amber-rim:#F5CC5A;
+  --red:     #CC2229; --red-pale:#FFF0F0; --red-rim:#FCA5A5;
+  --purple:  #7C3AED; --purple-pale:#F3EEFF; --purple-rim:#C4B5FD;
+  --white:#FFFFFF; --off:#F3F7FC; --surf:#E6EFF8;
+  --bdr:#D8E6F2; --bdr-2:#BDD0E8;
+  --text:#0A1828; --text-2:#28415C; --text-3:#466080;
+  --muted:#7090AA; --faint:#A8C0D0;
+  --r-sm:6px; --r:12px; --r-lg:18px; --r-xl:24px; --pill:999px;
+  --sh-xs:0 1px 3px rgba(6,16,30,.07);
+  --sh-sm:0 2px 8px rgba(6,16,30,.09),0 1px 3px rgba(6,16,30,.05);
+  --sh:0 4px 20px rgba(6,16,30,.11),0 1px 6px rgba(6,16,30,.06);
+  --sh-lg:0 10px 40px rgba(6,16,30,.15),0 2px 10px rgba(6,16,30,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle,rgba(18,96,200,.10) 1px,transparent 1px);background-size:26px 26px;}
+.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:28px 18px 100px;}
+
+/* ─── HERO ─── */
+.hero{background:var(--navy);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-lg);margin-bottom:22px;position:relative;display:grid;grid-template-columns:1fr auto;}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 80% at 80% -10%,rgba(30,122,232,.24) 0%,transparent 55%),radial-gradient(ellipse 40% 60% at 0% 110%,rgba(18,96,200,.14) 0%,transparent 50%),repeating-linear-gradient(-52deg,transparent 0 28px,rgba(255,255,255,.013) 28px 29px);}
+.hero-l{padding:26px 34px;position:relative;z-index:1;}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;}
+.hero-title{font-size:25px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:4px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:var(--pill);font-size:11px;font-weight:600;}
+.p-g{background:rgba(13,123,76,.28);color:#3DD68C;border:1px solid rgba(61,214,140,.22);}
+.p-b{background:rgba(30,122,232,.25);color:#7EC4FF;border:1px solid rgba(126,196,255,.22);}
+.p-d{background:rgba(255,255,255,.08);color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.11);}
+.hero-r{padding:26px 34px 26px 16px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;position:relative;z-index:1;min-width:190px;}
+.pot-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px;text-align:right;}
+.pot-frac{font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,.38);text-align:right;margin-bottom:2px;}
+.pot-amt{font-family:'DM Mono',monospace;font-size:40px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.03em;}
+.pot-bar{width:100%;height:5px;background:rgba(255,255,255,.12);border-radius:3px;margin-top:8px;overflow:hidden;}
+.pot-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-3));border-radius:3px;transition:width .5s ease;}
+@media(max-width:600px){.hero{grid-template-columns:1fr;}.hero-r{padding:0 22px 22px;align-items:flex-start;}.pot-amt{font-size:32px;}}
+
+/* ─── SAVE BAR ─── */
+.save-bar{background:var(--white);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:10px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:var(--sh-xs);}
+.save-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--green-3);}
+.save-txt{font-size:12px;color:var(--text-3);flex:1;}
+.save-ts{font-size:11px;color:var(--muted);white-space:nowrap;}
+.save-name-input{padding:5px 10px;border-radius:var(--r-sm);border:1px solid var(--bdr-2);font-family:'DM Sans',sans-serif;font-size:12px;color:var(--text);outline:none;width:140px;}
+.save-name-input:focus{border-color:var(--blue);}
+
+/* ─── SECTION ─── */
+.sec{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;margin-top:26px;}
+.sec::before{content:'';display:block;width:3px;height:14px;border-radius:2px;background:linear-gradient(to bottom,var(--blue),var(--blue-3));}
+.sec:first-child{margin-top:0;}
+
+/* ─── PROPERTY PICKER ─── */
+
+/* Mode bar — buttons + manual price input all in one row */
+.mode-bar{
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:14px; flex-wrap:wrap;
+}
+.mb-btn{padding:8px 18px;border-radius:var(--pill);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border:2px solid;transition:all .15s;}
+.mb-a{border-color:var(--blue);color:var(--blue);background:var(--blue-pale);}
+.mb-a.active{background:var(--blue);color:#fff;}
+.mb-b{border-color:var(--green);color:var(--green);background:var(--green-pale);}
+.mb-b.active{background:var(--green);color:#fff;}
+.mb-clr{border-color:var(--bdr-2);color:var(--muted);background:var(--white);}
+.mb-clr:hover{background:var(--surf);}
+
+/* Manual price input — right side of mode bar */
+.manual-price-box{
+  display:flex; align-items:center; gap:8px;
+  background:var(--white);
+  border:1.5px solid var(--bdr-2);
+  border-radius:var(--pill);
+  padding:5px 5px 5px 14px;
+  box-shadow:var(--sh-xs);
+  margin-left:auto;          /* push to the right, fills the circled empty space */
+}
+.mpb-label{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap;letter-spacing:.04em;}
+.mpb-select{
+  padding:4px 8px;border-radius:var(--pill);
+  border:1px solid var(--bdr);background:var(--surf);
+  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;
+  color:var(--text);cursor:pointer;outline:none;
+}
+.mpb-dollar{font-size:13px;font-weight:600;color:var(--muted);}
+.mpb-input{
+  width:80px;padding:5px 8px;
+  border:1px solid var(--bdr-2);border-radius:var(--r-sm);
+  font-family:'DM Mono',monospace;font-size:14px;font-weight:700;
+  color:var(--navy);background:var(--white);outline:none;
+  -moz-appearance:textfield;
+}
+.mpb-input::-webkit-inner-spin-button,.mpb-input::-webkit-outer-spin-button{-webkit-appearance:none;}
+.mpb-input:focus{border-color:var(--blue);}
+.mpb-input.has-custom{border-color:var(--amber);background:var(--amber-pale);color:var(--amber);}
+.mpb-apply{
+  padding:6px 14px;border-radius:var(--pill);
+  border:none;background:var(--blue);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+}
+.mpb-apply:hover{background:var(--blue-2);}
+.mpb-clear-custom{
+  padding:4px 8px;border-radius:var(--pill);
+  border:1px solid var(--amber-rim);background:transparent;
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;
+  color:var(--amber);cursor:pointer;display:none;
+}
+.mpb-clear-custom.show{display:block;}
+.mpb-clear-custom:hover{background:var(--amber-pale);}
+
+/* Property grid — clean cards, no extra inputs */
+.prop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:14px;}
+.prop-card{background:var(--white);border:2px solid var(--bdr);border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh-xs);cursor:pointer;transition:all .18s;position:relative;user-select:none;}
+.prop-card:hover{border-color:var(--bdr-2);box-shadow:var(--sh-sm);transform:translateY(-1px);}
+.prop-card.sel-a{border-color:var(--blue);box-shadow:0 0 0 3px rgba(18,96,200,.13),var(--sh-sm);background:var(--blue-pale);}
+.prop-card.sel-b{border-color:var(--green);box-shadow:0 0 0 3px rgba(9,123,76,.13),var(--sh-sm);background:var(--green-pale);}
+.pc-badges{position:absolute;top:11px;right:11px;display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
+.pc-badge{padding:2px 8px;border-radius:var(--pill);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.pb-gf{background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;}
+.pb-a{background:var(--blue-pale);color:var(--blue);border:1px solid var(--blue-rim);}
+.pb-b{background:var(--green-pale);color:var(--green);border:1px solid var(--green-rim);}
+.pc-custom-badge{padding:2px 8px;border-radius:var(--pill);font-size:9px;font-weight:700;background:var(--amber-pale);color:var(--amber);border:1px solid var(--amber-rim);}
+.pc-price{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:2px;}
+.pc-price.custom-price{color:var(--amber);}
+.pc-nights{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.pc-name{font-size:12px;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:7px;}
+.pc-feats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;}
+.pc-feat{font-size:10px;color:var(--text-3);background:var(--off);padding:2px 7px;border-radius:var(--pill);border:1px solid var(--bdr);}
+.pc-rating{font-size:11px;color:var(--muted);}
+.pc-hint{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
+.prop-card.sel-a .pc-hint,.prop-card.sel-b .pc-hint{display:none;}
+
+/* Combo bar */
+.combo-bar{background:var(--navy-2);border:1px solid var(--navy-3);border-radius:var(--r-lg);padding:15px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;box-shadow:var(--sh);}
+.cb-item{display:flex;align-items:center;gap:9px;}
+.cb-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.cb-name{font-size:11px;color:rgba(255,255,255,.5);}
+.cb-price{font-family:'DM Mono',monospace;font-size:16px;font-weight:700;color:#fff;}
+.cb-plus{font-size:18px;color:rgba(255,255,255,.2);padding:0 2px;}
+.cb-right{margin-left:auto;text-align:right;}
+.cb-tot-lbl{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;}
+.cb-tot{font-family:'DM Mono',monospace;font-size:24px;font-weight:700;color:var(--green-3);}
+.cb-pp{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px;}
+.cb-bdg{font-size:11px;margin-top:3px;}
+.over{color:#FF8A90;}.under{color:var(--green-3);}
+
+/* ─── ROOM ASSIGNMENT ─── */
+.room-layout{display:grid;grid-template-columns:185px 1fr 1fr;gap:14px;margin-bottom:12px;}
+@media(max-width:800px){.room-layout{grid-template-columns:1fr;}}
+.pool-box{background:var(--white);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:12px;box-shadow:var(--sh-xs);}
+.pool-title{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.house-col{display:flex;flex-direction:column;gap:8px;}
+.house-hdr{padding:11px 14px;border-radius:var(--r);font-size:12px;font-weight:700;}
+.hh-a{background:var(--blue);color:#fff;}
+.hh-b{background:var(--green);color:#fff;}
+.hh-empty{background:var(--surf);color:var(--muted);border:2px dashed var(--bdr-2);}
+.hh-det{font-size:10px;opacity:.7;font-weight:400;margin-top:2px;}
+.room-card{background:var(--white);border:1px solid var(--bdr);border-radius:var(--r);padding:9px 11px;min-height:46px;box-shadow:var(--sh-xs);}
+.room-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.room-num{font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);}
+.room-del{font-size:12px;color:var(--faint);border:none;background:none;cursor:pointer;padding:0;}
+.room-del:hover{color:var(--red);}
+.room-drop{display:flex;flex-wrap:wrap;gap:4px;min-height:26px;padding:2px;border-radius:var(--r-sm);transition:background .12s,outline .12s;}
+.room-drop.ov-a{background:var(--blue-pale);outline:2px dashed var(--blue-rim);}
+.room-drop.ov-b{background:var(--green-pale);outline:2px dashed var(--green-rim);}
+.pool-drop{display:flex;flex-direction:column;gap:4px;min-height:50px;padding:4px;border-radius:var(--r-sm);transition:background .12s;}
+.pool-drop.ov-p{background:var(--surf);outline:2px dashed var(--bdr-2);}
+.add-r-btn{padding:7px;border-radius:var(--r-sm);border:1.5px dashed var(--bdr-2);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;width:100%;}
+.add-r-btn.ab:hover{border-color:var(--blue-rim);color:var(--blue);background:var(--blue-pale);}
+.add-r-btn.ag:hover{border-color:var(--green-rim);color:var(--green);background:var(--green-pale);}
+.room-hint{font-size:10px;color:var(--faint);font-style:italic;align-self:center;padding:2px 0;}
+.rc-row{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-bottom:20px;flex-wrap:wrap;}
+.rc{display:flex;align-items:center;gap:5px;}
+.rc-dot{width:8px;height:8px;border-radius:50%;}
+
+/* Chips */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px 4px 4px;border-radius:var(--pill);font-size:11px;font-weight:600;cursor:grab;user-select:none;border:1px solid;white-space:nowrap;transition:transform .1s,box-shadow .1s;}
+.chip:active{cursor:grabbing;transform:scale(1.04);box-shadow:var(--sh);}
+.chip.dragging{opacity:.3;}
+.chip .av{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;}
+.ca-a{background:var(--blue-pale);color:var(--blue);border-color:var(--blue-rim);}.ca-a .av{background:var(--blue);}
+.ca-k{background:#EEF4FF;color:#3F6FCC;border-color:#B8CCEE;}.ca-k .av{background:#3F6FCC;}
+.fl-a{background:var(--green-pale);color:var(--green);border-color:var(--green-rim);}.fl-a .av{background:var(--green);}
+.fl-k{background:#EEF9F4;color:#2A8055;border-color:#A8E2C4;}.fl-k .av{background:#2A8055;}
+
+/* ─── PAYMENT TRACKER ─── */
+.pay-header{background:var(--navy);border-radius:var(--r-lg);padding:15px 22px;margin-bottom:12px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--sh);}
+.ph-i{text-align:center;}
+.ph-l{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.ph-v{font-family:'DM Mono',monospace;font-size:19px;font-weight:700;color:#fff;}
+.ph-v.grn{color:var(--green-3);}.ph-v.amb{color:var(--amber-rim);}
+.ph-div{width:1px;height:34px;background:rgba(255,255,255,.1);}
+
+.dates-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;align-items:flex-end;}
+.df label{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.df input{padding:6px 10px;border-radius:var(--r-sm);border:1px solid var(--amber-rim);background:var(--amber-pale);font-family:'DM Mono',monospace;font-size:12px;color:var(--text);outline:none;}
+.df input:focus{border-color:var(--amber);}
+.df input::-webkit-calendar-picker-indicator{opacity:.5;cursor:pointer;}
+
+.pot-prog{background:var(--white);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:16px 20px;box-shadow:var(--sh-sm);margin-bottom:14px;}
+.pp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:12px;flex-wrap:wrap;}
+.pp-title{font-size:14px;font-weight:700;color:var(--text);}
+.pp-amts{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);}
+.pp-amts .hi{color:var(--green);font-weight:700;}
+.track{height:16px;background:var(--surf);border-radius:8px;overflow:hidden;position:relative;border:1px solid var(--bdr);margin-bottom:6px;}
+.fill-1{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-2));border-radius:8px 0 0 8px;transition:width .5s ease;}
+.fill-2{position:absolute;top:0;height:100%;background:linear-gradient(90deg,var(--green),var(--green-3));transition:width .5s ease,left .5s ease;}
+.leg-row{display:flex;gap:14px;font-size:11px;color:var(--muted);}
+.leg-i{display:flex;align-items:center;gap:5px;}
+.leg-d{width:8px;height:8px;border-radius:2px;}
+
+.pay-grid{display:flex;flex-direction:column;gap:8px;}
+.apr{background:var(--white);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:13px 17px;box-shadow:var(--sh-xs);display:grid;grid-template-columns:auto 1fr auto auto auto;align-items:center;gap:12px;transition:border-color .2s,background .2s;}
+@media(max-width:680px){.apr{grid-template-columns:auto 1fr;row-gap:8px;}.apr>:nth-child(n+3){grid-column:1/-1;}}
+.apr.p1-done{border-left:4px solid var(--blue);}
+.apr.full-paid{border-left:4px solid var(--green);background:linear-gradient(to right,var(--green-pale) 0%,var(--white) 55%);}
+.apr-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.av-ca{background:var(--blue-pale);color:var(--blue);border:2px solid var(--blue-rim);}
+.av-fl{background:var(--green-pale);color:var(--green);border:2px solid var(--green-rim);}
+.apr-name{font-size:14px;font-weight:700;color:var(--text);}
+.apr-loc{font-size:11px;color:var(--muted);}
+.apr-phases{display:flex;gap:10px;align-items:center;}
+.ph-blk{text-align:center;}
+.ph-blk-l{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.ph-blk-amt{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:var(--text-2);}
+.ph-blk-due{font-size:9px;color:var(--faint);}
+.ph-plus-sym{color:var(--faint);font-size:14px;padding:0 2px;}
+.btn-grp{display:flex;gap:5px;flex-wrap:wrap;}
+.pbtn{padding:5px 11px;border-radius:var(--pill);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid;transition:all .15s;white-space:nowrap;}
+.pb1{border-color:var(--blue-rim);color:var(--blue);background:var(--blue-pale);}
+.pb1:hover{background:var(--blue);color:#fff;}
+.pb1.paid{background:var(--blue);color:#fff;} .pb1.paid:hover{opacity:.8;}
+.pb2{border-color:var(--green-rim);color:var(--green);background:var(--green-pale);}
+.pb2:hover{background:var(--green);color:#fff;}
+.pb2.paid{background:var(--green);color:#fff;} .pb2.paid:hover{opacity:.8;}
+.pb2:disabled{opacity:.35;cursor:not-allowed;}
+.pbf{border-color:var(--purple-rim);color:var(--purple);background:var(--purple-pale);}
+.pbf:hover{background:var(--purple);color:#fff;}
+.pbf.paid{background:var(--purple);color:#fff;} .pbf.paid:hover{opacity:.8;}
+.ring{width:13px;height:13px;border-radius:50%;border:2px solid var(--bdr-2);transition:all .3s;flex-shrink:0;}
+.r0{border-color:var(--bdr-2);background:transparent;}
+.r1{border-color:var(--blue);background:var(--blue);}
+.r2{border-color:var(--green);background:var(--green);box-shadow:0 0 6px rgba(16,168,100,.5);}
+
+/* Copy status button */
+.copy-bar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.copy-btn{padding:8px 18px;border-radius:var(--pill);border:1.5px solid var(--bdr-2);background:var(--white);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:var(--text-3);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:7px;}
+.copy-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+.copy-btn.copied{background:var(--green);color:#fff;border-color:var(--green);}
+.copy-hint{font-size:11px;color:var(--muted);flex:1;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-l">
+    <div class="hero-eyebrow">Phase 2 · Lodging · Saved locally on your device</div>
+    <div class="hero-title">Stewart · Hicks · Williams</div>
+    <div class="hero-sub">Thanksgiving Reunion · Four Corners, FL · Nov 24–27, 2026 · 3 nights</div>
+    <div class="hero-pills">
+      <span class="pill p-g">🏠 33 people · 2 houses</span>
+      <span class="pill p-b">💰 $5,000 budget</span>
+      <span class="pill p-d">21 adults contributing</span>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="pot-lbl">My payments tracked</div>
+    <div class="pot-frac" id="potFrac">$0 of $0</div>
+    <div class="pot-amt" id="potAmt">$0</div>
+    <div class="pot-bar"><div class="pot-fill" id="potFill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- SAVE BAR -->
+<div class="save-bar">
+  <div class="save-dot" id="saveDot"></div>
+  <div class="save-txt" id="saveTxt">Saved to this device — your payment tracking persists here</div>
+  <div class="save-ts" id="saveTs"></div>
+  <input class="save-name-input" id="myName" type="text" placeholder="Your name (optional)" maxlength="20"
+    oninput="state.myName=this.value;scheduleSave()">
+</div>
+
+<!-- STEP 1 -->
+<div class="sec">Step 1 — Pick Your Two Houses</div>
+
+<!-- Mode bar WITH manual price input on the right -->
+<div class="mode-bar">
+  <button class="mb-btn mb-a active" id="btnA" onclick="setMode('A')">🔵 Selecting House A</button>
+  <button class="mb-btn mb-b" id="btnB" onclick="setMode('B')">🟢 Selecting House B</button>
+  <button class="mb-btn mb-clr" onclick="clearSel()">✕ Clear</button>
+
+  <!-- Manual price override — clean, right side of mode bar, inside the red circle area -->
+  <div class="manual-price-box" title="Override the price for the currently selected house">
+    <span class="mpb-label">Override price for</span>
+    <select class="mpb-select" id="mpbHouse">
+      <option value="A">House A</option>
+      <option value="B">House B</option>
+    </select>
+    <span class="mpb-dollar">$</span>
+    <input class="mpb-input" id="mpbInput" type="number" min="0" step="1" placeholder="e.g. 4564"
+      oninput="onManualInput(this)">
+    <button class="mpb-apply" onclick="applyManualPrice()">Apply</button>
+    <button class="mpb-clear-custom" id="mpbClear" onclick="clearManualPrice()">✕ Reset</button>
+  </div>
+</div>
+
+<div class="prop-grid" id="propGrid"></div>
+
+<div id="comboWrap" style="display:none">
+  <div class="combo-bar">
+    <div class="cb-item">
+      <div class="cb-dot" style="background:var(--blue)"></div>
+      <div><div class="cb-name" id="cbNameA">House A</div><div class="cb-price" id="cbPrA">—</div></div>
+    </div>
+    <div class="cb-plus">+</div>
+    <div class="cb-item">
+      <div class="cb-dot" style="background:var(--green)"></div>
+      <div><div class="cb-name" id="cbNameB">House B</div><div class="cb-price" id="cbPrB">—</div></div>
+    </div>
+    <div class="cb-right">
+      <div class="cb-tot-lbl">Combined total</div>
+      <div class="cb-tot" id="cbTot">—</div>
+      <div class="cb-pp" id="cbPP">—</div>
+      <div class="cb-bdg" id="cbBdg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="sec">Step 2 — Assign Rooms <span style="color:var(--faint);font-weight:400;font-size:9px;text-transform:none;letter-spacing:0;margin-left:6px">Drag anyone into any room</span></div>
+
+<div class="room-layout">
+  <div class="pool-box">
+    <div class="pool-title" id="poolTitle">Unassigned (33)</div>
+    <div class="pool-drop" id="poolDrop"></div>
+  </div>
+  <div class="house-col">
+    <div class="house-hdr hh-empty" id="hdrA">House A<div class="hh-det">Select a property above</div></div>
+    <div id="roomsA"></div>
+    <button class="add-r-btn ab" onclick="addRoom('A')">+ Add room to House A</button>
+  </div>
+  <div class="house-col">
+    <div class="house-hdr hh-empty" id="hdrB">House B<div class="hh-det">Select a property above</div></div>
+    <div id="roomsB"></div>
+    <button class="add-r-btn ag" onclick="addRoom('B')">+ Add room to House B</button>
+  </div>
+</div>
+
+<div class="rc-row">
+  <div class="rc"><div class="rc-dot" style="background:var(--blue)"></div><span id="rcA">House A: 0</span></div>
+  <div class="rc"><div class="rc-dot" style="background:var(--green)"></div><span id="rcB">House B: 0</span></div>
+  <div class="rc"><div class="rc-dot" style="background:var(--faint)"></div><span id="rcU">Unassigned: 33</span></div>
+</div>
+
+<!-- STEP 3 -->
+<div class="sec">Step 3 — Track Your Payments</div>
+
+<div class="dates-row">
+  <div class="df"><label>Phase 1 deadline (half now)</label><input type="date" id="d1" value="2026-06-01" onchange="onDateChg()"></div>
+  <div class="df"><label>Phase 2 deadline (balance)</label><input type="date" id="d2" value="2026-10-01" onchange="onDateChg()"></div>
+</div>
+
+<div class="pot-prog">
+  <div class="pp-top">
+    <div><div class="pp-title">Total Pot Progress</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Blue = Phase 1 · Green = Phase 2</div></div>
+    <div class="pp-amts"><span class="hi" id="ppColl">$0</span> of <span id="ppTgt">$0</span></div>
+  </div>
+  <div class="track">
+    <div class="fill-1" id="fp1" style="width:0%"></div>
+    <div class="fill-2" id="fp2" style="width:0%;left:0%"></div>
+  </div>
+  <div class="leg-row">
+    <div class="leg-i"><div class="leg-d" style="background:var(--blue)"></div>Phase 1 paid</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--green)"></div>Phase 2 paid</div>
+    <div class="leg-i"><div class="leg-d" style="background:var(--surf);border:1px solid var(--bdr)"></div>Remaining</div>
+  </div>
+</div>
+
+<div class="pay-header">
+  <div class="ph-i"><div class="ph-l">House Total</div><div class="ph-v" id="phTot">—</div></div>
+  <div class="ph-div"></div>
+  <div class="ph-i"><div class="ph-l">Per Adult</div><div class="ph-v" id="phPP">—</div></div>
+  <div class="ph-div"></div>
+  <div class="ph-i"><div class="ph-l">Phase 1 Each</div><div class="ph-v amb" id="phP1">—</div></div>
+  <div class="ph-div"></div>
+  <div class="ph-i"><div class="ph-l">Phase 2 Each</div><div class="ph-v amb" id="phP2">—</div></div>
+  <div class="ph-div"></div>
+  <div class="ph-i"><div class="ph-l">Fully Paid</div><div class="ph-v grn" id="phFull">0 / 21</div></div>
+  <div class="ph-div"></div>
+  <div class="ph-i"><div class="ph-l">Half Paid</div><div class="ph-v" id="phHalf">0 / 21</div></div>
+</div>
+
+<div class="copy-bar">
+  <button class="copy-btn" id="copyBtn" onclick="copyPaymentStatus()">📋 Copy Payment Update</button>
+  <span class="copy-hint">Copies a ready-to-send text with paid & unpaid names for Phase 1</span>
+</div>
+
+<div class="pay-grid" id="payGrid"></div>
+
+</div><!-- /page -->
+<script>
+/* ═══════════ CONSTANTS ═══════════ */
+const N  = 21; // adults
+const LS = 'reunion_lodge_v4';
+
+const PROPS = [
+  {id:"p1",name:"Luxury vacation house near Disney World",br:8,beds:11,sleeps:11,price:1590,rating:4.83,rev:112,gf:true, feats:["Pool","Free cancellation"]},
+  {id:"p2",name:"5 Mi to Disney: Oasis w/ Pool & Patio",  br:8,beds:11,sleeps:11,price:1540,rating:4.2, rev:5,  gf:false,feats:["Pool","Patio","Free cancellation"]},
+  {id:"p3",name:"Mega Vacations Orlando · 24 People · 9BR",br:9,beds:14,sleeps:24,price:1690,rating:4.42,rev:19, gf:false,feats:["Sleeps 24","Free cancellation"]},
+  {id:"p4",name:"9BD Near Disney · Cinema · Pool · UV Air", br:9,beds:14,sleeps:24,price:2031,rating:4.59,rev:17, gf:false,feats:["Pool","Cinema","UV Air","BBQ"]},
+  {id:"p5",name:"9BR Family Villa · Oversized Pool",        br:9,beds:11,sleeps:11,price:2345,rating:4.88,rev:8,  gf:false,feats:["Oversized Pool","Free cancellation"]},
+  {id:"p6",name:"Pool Game & Theme Rooms · Resort Access",  br:8,beds:11,sleeps:11,price:2050,rating:5.0, rev:3,  gf:false,feats:["Pool","Game Rooms","Resort"]},
+  {id:"p7",name:"NEWHOUSE@Reunion 10BR · Jacuzzi & Pool",  br:10,beds:14,sleeps:14,price:2765,rating:4.65,rev:17, gf:false,feats:["Jacuzzi","Pool","Free cancellation"]},
+  {id:"p8",name:"Stunning 8-Bd Home · Pool & Spa",          br:8,beds:10,sleeps:10,price:2892,rating:4.88,rev:12, gf:false,feats:["Pool","Spa","Free cancellation"]},
+  {id:"p9",name:"Disney Villa · Waterpark · Movie Room",    br:8,beds:10,sleeps:10,price:2924,rating:4.91,rev:46, gf:true, feats:["Waterpark","Movie Room"]},
+];
+
+const PEOPLE = [
+  {id:"a1",n:"Aaron Hicks Jr",l:"C",t:"A"},{id:"k1",n:"Darion",l:"C",t:"K"},
+  {id:"k2",n:"Little Aaron",l:"C",t:"K"},{id:"a2",n:"Tarra",l:"C",t:"A"},
+  {id:"k3",n:"Kiley",l:"C",t:"K"},{id:"k4",n:"Kiyonn",l:"C",t:"K"},
+  {id:"a3",n:"Martin Jr",l:"C",t:"A"},{id:"a4",n:"Malachi",l:"C",t:"A"},
+  {id:"a5",n:"David Hicks",l:"C",t:"A"},
+  {id:"a6",n:"Mary Stewart",l:"F",t:"A"},{id:"k5",n:"Amari",l:"F",t:"K"},
+  {id:"a7",n:"Martinea Hicks",l:"F",t:"A"},{id:"k6",n:"Jaylen",l:"F",t:"K"},
+  {id:"a8",n:"Ravaughn",l:"F",t:"A"},{id:"a9",n:"Helena",l:"F",t:"A"},
+  {id:"k7",n:"Kiyan",l:"F",t:"K"},{id:"a10",n:"Terrence Stewart",l:"F",t:"A"},
+  {id:"a11",n:"Etrinity Stewart",l:"F",t:"A"},{id:"k8",n:"Demarious",l:"F",t:"K"},
+  {id:"a12",n:"Latavia",l:"F",t:"A"},{id:"a13",n:"Jasmine Williams",l:"F",t:"A"},
+  {id:"a14",n:"Zephaniah",l:"F",t:"A"},{id:"k9",n:"Zee",l:"F",t:"K"},
+  {id:"k10",n:"Nova",l:"F",t:"K"},{id:"a15",n:"Terrencia",l:"F",t:"A"},
+  {id:"a16",n:"Ayshiona",l:"F",t:"A"},{id:"k11",n:"Ti'Yanna",l:"F",t:"K"},
+  {id:"a17",n:"Jonathan",l:"F",t:"A"},{id:"a18",n:"Makayla",l:"F",t:"A"},
+  {id:"k12",n:"Imari",l:"F",t:"K"},{id:"a19",n:"Marquise",l:"F",t:"A"},
+  {id:"a20",n:"Kevon",l:"F",t:"A"},{id:"a21",n:"Drevon",l:"F",t:"A"},
+];
+const ADULTS = PEOPLE.filter(p=>p.t==="A");
+
+/* ═══════════ STATE ═══════════ */
+let S = {
+  selA:null, selB:null,
+  customA:null, customB:null,
+  mode:'A',
+  rooms:{A:[],B:[]},
+  assign:{},
+  pay:{},
+  d1:'2026-06-01', d2:'2026-10-01',
+  myName:'',
+};
+let nextRid = 1;
+let saveTimer = null;
+
+PEOPLE.forEach(p => S.assign[p.id]={house:null,room:null});
+ADULTS.forEach(a => S.pay[a.id]={p1:false,p2:false});
+
+/* ═══════════ UTILS ═══════════ */
+const fm  = n => n>0 ? '$'+n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',') : '—';
+const fr  = n => n>0 ? '$'+Math.round(n).toLocaleString() : '—';
+const ini = s => s.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+const pr  = id => PROPS.find(p=>p.id===id);
+const pe  = id => PEOPLE.find(p=>p.id===id);
+const set = (id,v) => { const e=document.getElementById(id); if(e&&e.textContent!==v) e.textContent=v; };
+const fd  = s => { if(!s) return '—'; const d=new Date(s+'T00:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); };
+const prA = () => S.customA ?? (S.selA ? pr(S.selA)?.price??0 : 0);
+const prB = () => S.customB ?? (S.selB ? pr(S.selB)?.price??0 : 0);
+const tot = () => prA()+prB();
+const ppA = () => tot()>0 ? tot()/N : 0;
+const p1A = () => ppA()/2;
+const p2A = () => ppA()/2;
+
+/* ═══════════ LOCALSTORAGE ═══════════ */
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(doSave, 600);
+}
+
+function doSave() {
+  try {
+    localStorage.setItem(LS, JSON.stringify({...S, savedAt:Date.now()}));
+    document.getElementById('saveDot').style.background = 'var(--green-3)';
+    document.getElementById('saveTxt').textContent = 'Saved to this device — your payment tracking persists here';
+    const ts = new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    document.getElementById('saveTs').textContent = 'Last saved ' + ts;
+  } catch(e) {
+    document.getElementById('saveDot').style.background = 'var(--amber-rim)';
+    document.getElementById('saveTxt').textContent = 'Could not save — localStorage may be disabled';
+  }
+}
+
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(LS);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    // Merge carefully
+    if (saved.selA  !== undefined) S.selA  = saved.selA;
+    if (saved.selB  !== undefined) S.selB  = saved.selB;
+    if (saved.customA !== undefined) S.customA = saved.customA;
+    if (saved.customB !== undefined) S.customB = saved.customB;
+    if (saved.rooms)  { S.rooms = saved.rooms; const ids=[...(S.rooms.A||[]),...(S.rooms.B||[])].map(r=>r.id); if(ids.length) nextRid=Math.max(...ids)+1; }
+    if (saved.assign) S.assign = {...S.assign, ...saved.assign};
+    if (saved.pay)    S.pay    = {...S.pay,    ...saved.pay};
+    if (saved.d1)   { S.d1 = saved.d1; document.getElementById('d1').value = S.d1; }
+    if (saved.d2)   { S.d2 = saved.d2; document.getElementById('d2').value = S.d2; }
+    if (saved.myName) { S.myName = saved.myName; document.getElementById('myName').value = S.myName; }
+    if (saved.savedAt) {
+      const ts = new Date(saved.savedAt).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+      document.getElementById('saveTs').textContent = 'Last saved ' + ts;
+    }
+    // Restore custom inputs in mode bar
+    if (S.customA) { document.getElementById('mpbInput').value = S.customA; syncManualBox(); }
+    if (S.customB) { document.getElementById('mpbInput').value = S.customB; syncManualBox(); }
+    document.getElementById('saveTxt').textContent = 'Loaded your saved data — changes auto-save to this device';
+  } catch(e) {
+    document.getElementById('saveTxt').textContent = 'Could not load saved data';
+  }
+}
+
+/* ═══════════ MANUAL PRICE BOX ═══════════ */
+function onManualInput(inp) {
+  inp.classList.toggle('has-custom', inp.value.length > 0);
+}
+
+function applyManualPrice() {
+  const house = document.getElementById('mpbHouse').value;
+  const val   = parseFloat(document.getElementById('mpbInput').value);
+  if (isNaN(val) || val < 0) {
+    document.getElementById('mpbInput').style.borderColor = 'var(--red)';
+    setTimeout(()=>document.getElementById('mpbInput').style.borderColor='', 1500);
+    return;
+  }
+  if (house === 'A') { S.customA = val; if (!S.selA) setMode('A'); }
+  else               { S.customB = val; if (!S.selB) setMode('B'); }
+  syncManualBox();
+  refreshPropGrid();
+  refreshComboBar();
+  refreshPayHeader();
+  scheduleSave();
+}
+
+function clearManualPrice() {
+  const house = document.getElementById('mpbHouse').value;
+  if (house==='A') S.customA = null;
+  else             S.customB = null;
+  document.getElementById('mpbInput').value = '';
+  document.getElementById('mpbInput').classList.remove('has-custom');
+  syncManualBox();
+  refreshPropGrid();
+  refreshComboBar();
+  refreshPayHeader();
+  scheduleSave();
+}
+
+function syncManualBox() {
+  const house = document.getElementById('mpbHouse').value;
+  const custom = house==='A' ? S.customA : S.customB;
+  const clrBtn = document.getElementById('mpbClear');
+  clrBtn.classList.toggle('show', custom !== null);
+  if (custom && !document.getElementById('mpbInput').value) {
+    document.getElementById('mpbInput').value = custom;
+    document.getElementById('mpbInput').classList.add('has-custom');
+  }
+}
+
+/* ═══════════ PROPERTY PICKER ═══════════ */
+function setMode(m) {
+  S.mode = m;
+  document.getElementById('btnA').classList.toggle('active', m==='A');
+  document.getElementById('btnB').classList.toggle('active', m==='B');
+  // Sync manual box to show correct custom price
+  document.getElementById('mpbHouse').value = m;
+  const custom = m==='A' ? S.customA : S.customB;
+  const inp = document.getElementById('mpbInput');
+  inp.value = custom ?? '';
+  inp.classList.toggle('has-custom', custom !== null);
+  document.getElementById('mpbClear').classList.toggle('show', custom !== null);
+}
+
+function clearSel() {
+  S.selA=null; S.selB=null; S.customA=null; S.customB=null;
+  document.getElementById('mpbInput').value='';
+  document.getElementById('mpbInput').classList.remove('has-custom');
+  document.getElementById('mpbClear').classList.remove('show');
+  refreshPropGrid(); refreshComboBar(); refreshHouseHdrs(); refreshPayHeader();
+  scheduleSave();
+}
+
+function selectProp(id) {
+  if (S.mode==='A') {
+    if (S.selB===id) return;
+    S.selA=id; S.customA=null;
+    setMode('B');
+  } else {
+    if (S.selA===id) return;
+    S.selB=id; S.customB=null;
+    setMode('A');
+  }
+  refreshPropGrid(); refreshComboBar(); refreshHouseHdrs(); refreshPayHeader();
+  scheduleSave();
+}
+
+function buildPropGrid() {
+  document.getElementById('propGrid').innerHTML = PROPS.map(p=>`
+    <div class="prop-card" id="pc_${p.id}" onclick="selectProp('${p.id}')">
+      <div class="pc-badges">
+        ${p.gf?'<span class="pc-badge pb-gf">Guest Favorite</span>':''}
+      </div>
+      <div class="pc-price" id="pcp_${p.id}">$${p.price.toLocaleString()}</div>
+      <div class="pc-nights">3 nights · ${p.br}BR · ${p.beds} beds · sleeps ${p.sleeps}</div>
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-feats">${p.feats.slice(0,3).map(f=>`<span class="pc-feat">${f}</span>`).join('')}</div>
+      <div class="pc-rating">★ ${p.rating} (${p.rev} reviews)</div>
+      <div class="pc-hint">Click to select</div>
+    </div>`).join('');
+  refreshPropGrid();
+}
+
+function refreshPropGrid() {
+  PROPS.forEach(p=>{
+    const card=document.getElementById('pc_'+p.id);
+    const prEl=document.getElementById('pcp_'+p.id);
+    if(!card||!prEl) return;
+    card.className='prop-card'+(S.selA===p.id?' sel-a':S.selB===p.id?' sel-b':'');
+    // Price display
+    const custom=S.selA===p.id?S.customA:S.selB===p.id?S.customB:null;
+    prEl.className='pc-price'+(custom?' custom-price':'');
+    prEl.textContent=custom?`$${Math.round(custom).toLocaleString()}`:`$${p.price.toLocaleString()}`;
+    // Badges
+    const bw=card.querySelector('.pc-badges');
+    bw.innerHTML=(p.gf?'<span class="pc-badge pb-gf">Guest Favorite</span>':'');
+    if(S.selA===p.id){const b=document.createElement('span');b.className='pc-badge pb-a';b.textContent='House A';bw.appendChild(b);}
+    if(S.selB===p.id){const b=document.createElement('span');b.className='pc-badge pb-b';b.textContent='House B';bw.appendChild(b);}
+    if(custom){const b=document.createElement('span');b.className='pc-custom-badge';b.textContent='Custom price';bw.appendChild(b);}
+  });
+}
+
+function refreshComboBar() {
+  const wrap=document.getElementById('comboWrap');
+  const pA=S.selA?pr(S.selA):null, pB=S.selB?pr(S.selB):null;
+  if(!pA&&!pB&&!S.customA&&!S.customB){wrap.style.display='none';return;}
+  wrap.style.display='block';
+  set('cbNameA',pA?pA.name.slice(0,36)+'…':'Not selected');
+  set('cbPrA',prA()>0?fr(prA()):'—');
+  set('cbNameB',pB?pB.name.slice(0,36)+'…':'Not selected');
+  set('cbPrB',prB()>0?fr(prB()):'—');
+  if((pA||S.customA)&&(pB||S.customB)){
+    const t=tot(),pp=ppA(),ph=p1A();
+    set('cbTot',`$${Math.round(t).toLocaleString()}`);
+    set('cbPP',`${fm(pp)}/adult · ${fm(ph)}/phase`);
+    const el=document.getElementById('cbBdg');
+    if(t>5000){el.textContent=`⚠️ $${(t-5000).toLocaleString()} over $5,000`;el.className='cb-bdg over';}
+    else{el.textContent=`✓ $${(5000-t).toLocaleString()} under $5,000 budget`;el.className='cb-bdg under';}
+  } else { set('cbTot','—');set('cbPP','Select both houses');document.getElementById('cbBdg').textContent=''; }
+}
+
+function refreshHouseHdrs() {
+  const pA=S.selA?pr(S.selA):null, pB=S.selB?pr(S.selB):null;
+  const hA=document.getElementById('hdrA'), hB=document.getElementById('hdrB');
+  if(pA||S.customA){
+    hA.className='house-hdr hh-a';
+    const nm=pA?pA.name.slice(0,28)+'…':'Custom price';
+    hA.innerHTML=`House A — ${nm}<div class="hh-det">${pA?pA.br+'BR · '+pA.beds+' beds · ':''} ${fr(prA())} / 3 nights</div>`;
+  } else { hA.className='house-hdr hh-empty'; hA.innerHTML='House A<div class="hh-det">Select a property above</div>'; }
+  if(pB||S.customB){
+    hB.className='house-hdr hh-b';
+    const nm=pB?pB.name.slice(0,28)+'…':'Custom price';
+    hB.innerHTML=`House B — ${nm}<div class="hh-det">${pB?pB.br+'BR · '+pB.beds+' beds · ':''} ${fr(prB())} / 3 nights</div>`;
+  } else { hB.className='house-hdr hh-empty'; hB.innerHTML='House B<div class="hh-det">Select a property above</div>'; }
+}
+
+/* ═══════════ ROOMS ═══════════ */
+function cClass(p){
+  if(p.l==='C'&&p.t==='A') return 'chip ca-a';
+  if(p.l==='C'&&p.t==='K') return 'chip ca-k';
+  if(p.l==='F'&&p.t==='A') return 'chip fl-a';
+  return 'chip fl-k';
+}
+function mkChip(p){
+  const el=document.createElement('div');
+  el.className=cClass(p);el.draggable=true;el.dataset.pid=p.id;
+  el.innerHTML=`<div class="av">${ini(p.n)}</div>${p.n}`;
+  el.addEventListener('dragstart',e=>{e.dataTransfer.setData('pid',p.id);setTimeout(()=>el.classList.add('dragging'),0);});
+  el.addEventListener('dragend',()=>el.classList.remove('dragging'));
+  return el;
+}
+function bindDrop(zone,house,rid){
+  const oc=house==='A'?'ov-a':house==='B'?'ov-b':'ov-p';
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add(oc);});
+  zone.addEventListener('dragleave',()=>zone.classList.remove(oc));
+  zone.addEventListener('drop',e=>{
+    e.preventDefault();zone.classList.remove(oc);
+    const pid=e.dataTransfer.getData('pid');if(!pid)return;
+    S.assign[pid]={house,room:rid};
+    renderRooms();scheduleSave();
+  });
+}
+function addRoom(house){
+  const id=nextRid++;
+  if(house==='A') S.rooms.A.push({id,label:'Room '+id});
+  else            S.rooms.B.push({id,label:'Room '+id});
+  renderRooms();scheduleSave();
+}
+function delRoom(house,rid){
+  PEOPLE.forEach(p=>{if(S.assign[p.id]?.house===house&&S.assign[p.id]?.room===rid)S.assign[p.id]={house:null,room:null};});
+  if(house==='A') S.rooms.A=S.rooms.A.filter(r=>r.id!==rid);
+  else            S.rooms.B=S.rooms.B.filter(r=>r.id!==rid);
+  renderRooms();scheduleSave();
+}
+function renderRooms(){
+  // Pool
+  const pool=document.getElementById('poolDrop');
+  pool.innerHTML='';
+  PEOPLE.filter(p=>!S.assign[p.id]?.house).forEach(p=>pool.appendChild(mkChip(p)));
+  bindDrop(pool,null,null);
+  // House A
+  const rA=document.getElementById('roomsA');rA.innerHTML='';
+  (S.rooms.A||[]).forEach(room=>{
+    const card=document.createElement('div');card.className='room-card';
+    card.innerHTML=`<div class="room-top"><div class="room-num">${room.label}</div><button class="room-del" onclick="delRoom('A',${room.id})">✕</button></div>`;
+    const drop=document.createElement('div');drop.className='room-drop';
+    const occ=PEOPLE.filter(p=>S.assign[p.id]?.house==='A'&&S.assign[p.id]?.room===room.id);
+    if(!occ.length){const h=document.createElement('div');h.className='room-hint';h.textContent='Drop people here';drop.appendChild(h);}
+    else occ.forEach(p=>drop.appendChild(mkChip(p)));
+    bindDrop(drop,'A',room.id);card.appendChild(drop);rA.appendChild(card);
+  });
+  // House B
+  const rB=document.getElementById('roomsB');rB.innerHTML='';
+  (S.rooms.B||[]).forEach(room=>{
+    const card=document.createElement('div');card.className='room-card';
+    card.innerHTML=`<div class="room-top"><div class="room-num">${room.label}</div><button class="room-del" onclick="delRoom('B',${room.id})">✕</button></div>`;
+    const drop=document.createElement('div');drop.className='room-drop';
+    const occ=PEOPLE.filter(p=>S.assign[p.id]?.house==='B'&&S.assign[p.id]?.room===room.id);
+    if(!occ.length){const h=document.createElement('div');h.className='room-hint';h.textContent='Drop people here';drop.appendChild(h);}
+    else occ.forEach(p=>drop.appendChild(mkChip(p)));
+    bindDrop(drop,'B',room.id);card.appendChild(drop);rB.appendChild(card);
+  });
+  // Counts
+  const cA=PEOPLE.filter(p=>S.assign[p.id]?.house==='A').length;
+  const cB=PEOPLE.filter(p=>S.assign[p.id]?.house==='B').length;
+  const cU=PEOPLE.filter(p=>!S.assign[p.id]?.house).length;
+  set('poolTitle',`Unassigned (${cU})`);
+  set('rcA',`House A: ${cA} people`);
+  set('rcB',`House B: ${cB} people`);
+  set('rcU',`Unassigned: ${cU}`);
+  refreshHouseHdrs();
+}
+
+/* ═══════════ PAYMENTS ═══════════ */
+function buildPayGrid(){
+  const grid=document.getElementById('payGrid');grid.innerHTML='';
+  ADULTS.forEach(a=>{
+    const row=document.createElement('div');row.className='apr';row.id='apr_'+a.id;
+    const av=a.l==='C'?'apr-av av-ca':'apr-av av-fl';
+    const loc=a.l==='C'?'✈ California':'🏡 Florida';
+    row.innerHTML=`
+      <div class="${av}">${ini(a.n)}</div>
+      <div><div class="apr-name">${a.n}</div><div class="apr-loc">${loc} adult</div></div>
+      <div class="apr-phases">
+        <div class="ph-blk"><div class="ph-blk-l">Phase 1</div><div class="ph-blk-amt" id="pa1_${a.id}">—</div><div class="ph-blk-due" id="pd1_${a.id}">${fd(S.d1)}</div></div>
+        <div class="ph-plus-sym">+</div>
+        <div class="ph-blk"><div class="ph-blk-l">Phase 2</div><div class="ph-blk-amt" id="pa2_${a.id}">—</div><div class="ph-blk-due" id="pd2_${a.id}">${fd(S.d2)}</div></div>
+      </div>
+      <div class="btn-grp">
+        <button class="pbtn pb1" id="pb1_${a.id}" onclick="payAdult('${a.id}',1)">Pay Phase 1</button>
+        <button class="pbtn pb2" id="pb2_${a.id}" onclick="payAdult('${a.id}',2)" disabled>Pay Phase 2</button>
+        <button class="pbtn pbf" id="pbf_${a.id}" onclick="payAll('${a.id}')">Pay All</button>
+      </div>
+      <div class="ring r0" id="rng_${a.id}"></div>`;
+    grid.appendChild(row);
+  });
+  refreshPayDisplay();
+}
+function payAdult(id,phase){
+  const pay=S.pay[id];
+  if(phase===2&&!pay.p1)return;
+  pay['p'+phase]=!pay['p'+phase];
+  if(!pay.p1&&pay.p2)pay.p2=false;
+  refreshPayDisplay();scheduleSave();
+}
+function payAll(id){
+  const pay=S.pay[id];
+  if(pay.p1&&pay.p2){ S.pay[id]={p1:false,p2:false}; }
+  else { S.pay[id]={p1:true,p2:true}; }
+  refreshPayDisplay();scheduleSave();
+}
+function onDateChg(){
+  S.d1=document.getElementById('d1').value;
+  S.d2=document.getElementById('d2').value;
+  refreshPayDisplay();scheduleSave();
+}
+function refreshPayHeader(){refreshPayDisplay();}
+function refreshPayDisplay(){
+  const p1=p1A(),p2=p2A(),t=tot();
+  let full=0,half=0,p1c=0,p2c=0,coll=0;
+  ADULTS.forEach(a=>{
+    const pay=S.pay[a.id]||{p1:false,p2:false};
+    const row=document.getElementById('apr_'+a.id);
+    set('pa1_'+a.id,t>0?fm(p1):'—'); set('pa2_'+a.id,t>0?fm(p2):'—');
+    set('pd1_'+a.id,fd(S.d1)); set('pd2_'+a.id,fd(S.d2));
+    if(pay.p1)p1c++;if(pay.p2)p2c++;
+    if(pay.p1&&pay.p2){full++;coll+=p1+p2;}else if(pay.p1){half++;coll+=p1;}
+    if(row){row.classList.remove('p1-done','full-paid');if(pay.p1&&pay.p2)row.classList.add('full-paid');else if(pay.p1)row.classList.add('p1-done');}
+    const rng=document.getElementById('rng_'+a.id);
+    if(rng)rng.className='ring '+(pay.p1&&pay.p2?'r2':pay.p1?'r1':'r0');
+    const b1=document.getElementById('pb1_'+a.id);
+    if(b1){b1.textContent=pay.p1?'✓ Phase 1 Paid':'Pay Phase 1';b1.classList.toggle('paid',pay.p1);}
+    const b2=document.getElementById('pb2_'+a.id);
+    if(b2){b2.disabled=!pay.p1;b2.textContent=pay.p2?'✓ Phase 2 Paid':'Pay Phase 2';b2.classList.toggle('paid',pay.p2);}
+    const bf=document.getElementById('pbf_'+a.id);
+    if(bf){bf.textContent=(pay.p1&&pay.p2)?'✓ Fully Paid':'Pay All';bf.classList.toggle('paid',pay.p1&&pay.p2);}
+  });
+  // Header
+  set('phTot', t>0?`$${Math.round(t).toLocaleString()}`:'—');
+  set('phPP',  t>0?fm(ppA()):'—'); set('phP1',t>0?fm(p1):'—'); set('phP2',t>0?fm(p2):'—');
+  set('phFull',`${full} / ${N}`); set('phHalf',`${half} / ${N}`);
+  // Progress
+  const p1pct=t>0?Math.min(p1c*p1/t*100,50):0;
+  const p2pct=t>0?Math.min(p2c*p2/t*100,50):0;
+  document.getElementById('fp1').style.width=p1pct+'%';
+  document.getElementById('fp2').style.width=p2pct+'%';
+  document.getElementById('fp2').style.left=p1pct+'%';
+  set('ppColl',`$${Math.round(coll).toLocaleString()}`);
+  set('ppTgt', t>0?`$${Math.round(t).toLocaleString()}`:'$0');
+  // Hero
+  const pct=t>0?Math.min(coll/t*100,100):0;
+  set('potAmt', `$${Math.round(coll).toLocaleString()}`);
+  set('potFrac', `$${Math.round(coll).toLocaleString()} of ${t>0?'$'+Math.round(t).toLocaleString():'$0'}`);
+  document.getElementById('potFill').style.width=pct.toFixed(1)+'%';
+}
+
+function copyPaymentStatus(){
+  const p1=p1A(),p2=p2A(),t=tot();
+  const paid1=[], paid2=[], unpaid=[], halfOnly=[];
+  ADULTS.forEach(a=>{
+    const pay=S.pay[a.id]||{p1:false,p2:false};
+    if(pay.p1&&pay.p2) paid2.push(a.n);
+    else if(pay.p1)    { paid1.push(a.n); halfOnly.push(a.n); }
+    else               unpaid.push(a.n);
+  });
+
+  const d1=fd(S.d1), d2=fd(S.d2);
+  const amt1=t>0?fm(p1):'TBD', amt2=t>0?fm(p2):'TBD';
+
+  let msg = `🏠 SHW Legacy Reunion 2026 — Payment Update\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `Phase 1 (${amt1}) due: ${d1}\n`;
+  msg += `Phase 2 (${amt2}) due: ${d2}\n\n`;
+
+  if(paid2.length){
+    msg += `✅ FULLY PAID (both phases):\n`;
+    paid2.forEach(n => msg += `  • ${n}\n`);
+    msg += `\n`;
+  }
+  if(halfOnly.length){
+    msg += `🔵 PHASE 1 PAID (balance still owed):\n`;
+    halfOnly.forEach(n => msg += `  • ${n}\n`);
+    msg += `\n`;
+  }
+  if(unpaid.length){
+    msg += `🔴 NOT YET PAID:\n`;
+    unpaid.forEach(n => msg += `  • ${n}\n`);
+    msg += `\n`;
+  }
+  msg += `━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `${paid1.length+paid2.length} of ${ADULTS.length} adults paid Phase 1  ·  ${paid2.length} fully paid`;
+
+  navigator.clipboard.writeText(msg).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    btn.textContent='✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='📋 Copy Payment Update'; btn.classList.remove('copied'); },2500);
+  }).catch(()=>{
+    // Fallback for browsers that block clipboard
+    const ta=document.createElement('textarea');
+    ta.value=msg; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn=document.getElementById('copyBtn');
+    btn.textContent='✓ Copied!'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='📋 Copy Payment Update'; btn.classList.remove('copied'); },2500);
+  });
+}
+
+/* ═══════════ INIT ═══════════ */
+document.addEventListener('DOMContentLoaded',()=>{
+  buildPropGrid();
+  // Default rooms
+  [1,2,3].forEach(()=>{const id=nextRid++;S.rooms.A.push({id,label:'Room '+id});});
+  [1,2,3].forEach(()=>{const id=nextRid++;S.rooms.B.push({id,label:'Room '+id});});
+  buildPayGrid();
+  renderRooms();
+  loadSaved();     // restore from localStorage
+  refreshPropGrid();
+  refreshComboBar();
+  refreshPayDisplay();
+});
+</script>
+</body>
+</html>
